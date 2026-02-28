@@ -1,0 +1,326 @@
+# MonzoBank Application Configuration
+spring:
+  application:
+    name: monzobank-api
+  
+  # Database Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/monzobank
+    username: ${DB_USERNAME:monzobank}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      leak-detection-threshold: 60000
+  
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        use_sql_comments: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+        batch_versioned_data: true
+    open-in-view: false
+  
+  # Flyway Configuration
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: true
+  
+  # Redis Configuration (for caching and sessions)
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+    timeout: 2000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+  
+  # Cache Configuration
+  cache:
+    type: redis
+    redis:
+      time-to-live: 600000
+      cache-null-values: false
+  
+  # Security Configuration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI:http://localhost:8080}
+  
+  # Mail Configuration
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: ${MAIL_HOST:smtp.gmail.com}
+  
+  # File Upload Configuration
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  
+  # Jackson Configuration
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+    default-property-inclusion: non_null
+  
+  # Actuator Configuration
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,info,metrics,prometheus
+    endpoint:
+      health:
+        show-details: when-authorized
+    metrics:
+      export:
+        prometheus:
+          enabled: true
+
+# Server Configuration
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+  http2:
+    enabled: true
+
+# Logging Configuration
+logging:
+  level:
+    com.avinashpatil.monzobank: ${LOG_LEVEL:INFO}
+    org.springframework.security: ${SECURITY_LOG_LEVEL:WARN}
+    org.hibernate.SQL: ${SQL_LOG_LEVEL:WARN}
+    org.hibernate.type.descriptor.sql.BasicBinder: ${SQL_PARAM_LOG_LEVEL:WARN}
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/monzobank.log
+    max-size: 10MB
+    max-history: 30
+
+# Application Specific Configuration
+app:
+  # JWT Configuration
+  jwt:
+    secret: ${JWT_SECRET:mySecretKey123456789012345678901234567890}
+    expiration: ${JWT_EXPIRATION:86400000} # 24 hours in milliseconds
+    refresh-expiration: ${JWT_REFRESH_EXPIRATION:604800000} # 7 days in milliseconds
+    issuer: ${JWT_ISSUER:MonzoBank}
+  
+  # Security Configuration
+  security:
+    cors:
+      allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:5173}
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS,PATCH
+      allowed-headers: "*"
+      allow-credentials: true
+      max-age: 3600
+    
+    # Rate Limiting
+    rate-limit:
+      enabled: true
+      requests-per-minute: ${RATE_LIMIT_RPM:100}
+      burst-capacity: ${RATE_LIMIT_BURST:200}
+  
+  # Banking Configuration
+  banking:
+    # Account Configuration
+    account:
+      default-currency: GBP
+      max-overdraft-limit: 5000.00
+      interest-calculation-frequency: MONTHLY
+    
+    # Transaction Configuration
+    transaction:
+      max-daily-limit: 10000.00
+      max-single-transaction: 5000.00
+      fraud-detection-enabled: true
+      real-time-processing: true
+    
+    # Card Configuration
+    card:
+      default-pin-length: 4
+      max-failed-attempts: 3
+      block-duration-minutes: 30
+      contactless-limit: 100.00
+    
+    # Loan Configuration
+    loan:
+      max-loan-amount: 50000.00
+      min-credit-score: 600
+      max-term-months: 60
+      default-interest-rate: 5.5
+    
+    # Investment Configuration
+    investment:
+      min-investment-amount: 10.00
+      max-investment-amount: 100000.00
+      trading-hours-start: "09:00"
+      trading-hours-end: "17:30"
+      market-data-refresh-interval: 60 # seconds
+  
+  # External Services Configuration
+  external:
+    # Payment Gateway
+    payment-gateway:
+      base-url: ${PAYMENT_GATEWAY_URL:https://api.stripe.com}
+      api-key: ${PAYMENT_GATEWAY_API_KEY:}
+      webhook-secret: ${PAYMENT_GATEWAY_WEBHOOK_SECRET:}
+    
+    # SMS Service
+    sms:
+      provider: ${SMS_PROVIDER:twilio}
+      api-key: ${SMS_API_KEY:}
+      api-secret: ${SMS_API_SECRET:}
+      from-number: ${SMS_FROM_NUMBER:}
+    
+    # Email Service
+    email:
+      provider: ${EMAIL_PROVIDER:sendgrid}
+      api-key: ${EMAIL_API_KEY:}
+      from-email: ${EMAIL_FROM:noreply@monzobank.com}
+      from-name: ${EMAIL_FROM_NAME:MonzoBank}
+    
+    # Credit Bureau
+    credit-bureau:
+      base-url: ${CREDIT_BUREAU_URL:https://api.creditbureau.com}
+      api-key: ${CREDIT_BUREAU_API_KEY:}
+      timeout: 30000
+    
+    # Market Data Provider
+    market-data:
+      base-url: ${MARKET_DATA_URL:https://api.marketdata.com}
+      api-key: ${MARKET_DATA_API_KEY:}
+      timeout: 10000
+  
+  # Notification Configuration
+  notifications:
+    email:
+      enabled: true
+      templates-path: classpath:templates/email
+    sms:
+      enabled: true
+      max-length: 160
+    push:
+      enabled: true
+      firebase-config-path: ${FIREBASE_CONFIG_PATH:}
+  
+  # File Storage Configuration
+  storage:
+    type: ${STORAGE_TYPE:local} # local, s3, azure
+    local:
+      upload-dir: ${LOCAL_UPLOAD_DIR:./uploads}
+    s3:
+      bucket-name: ${S3_BUCKET_NAME:}
+      region: ${S3_REGION:us-east-1}
+      access-key: ${S3_ACCESS_KEY:}
+      secret-key: ${S3_SECRET_KEY:}
+  
+  # Monitoring Configuration
+  monitoring:
+    metrics:
+      enabled: true
+      export-interval: 60 # seconds
+    tracing:
+      enabled: ${TRACING_ENABLED:false}
+      jaeger:
+        endpoint: ${JAEGER_ENDPOINT:http://localhost:14268/api/traces}
+  
+  # Scheduler Configuration
+  scheduler:
+    enabled: true
+    thread-pool-size: 5
+    tasks:
+      interest-calculation:
+        cron: "0 0 1 * * ?" # Monthly on 1st day
+      loan-payment-reminder:
+        cron: "0 0 9 * * ?" # Daily at 9 AM
+      investment-price-update:
+        cron: "0 */5 * * * ?" # Every 5 minutes
+      fraud-detection:
+        cron: "0 */10 * * * ?" # Every 10 minutes
+
+---
+# Development Profile
+spring:
+  config:
+    activate:
+      on-profile: dev
+  
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    com.avinashpatil.monzobank: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+app:
+  security:
+    rate-limit:
+      enabled: false
+
+---
+# Production Profile
+spring:
+  config:
+    activate:
+      on-profile: prod
+  
+  jpa:
+    show-sql: false
+
+logging:
+  level:
+    com.avinashpatil.monzobank: WARN
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
+
+app:
+  security:
+    rate-limit:
+      enabled: true
+      requests-per-minute: 60
+      burst-capacity: 100

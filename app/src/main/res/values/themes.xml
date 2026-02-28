@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MonzoBank" parent="Theme.SplashScreen">
+        <!-- Splash screen attributes -->
+        <item name="windowSplashScreenBackground">@color/monzo_primary</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.MonzoBank.NoSplash</item>
+    </style>
+
+    <style name="Theme.MonzoBank.NoSplash" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Regular app theme without splash screen -->
+    </style>
+
+</resources>
