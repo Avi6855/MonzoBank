@@ -44,20 +44,35 @@ This project is documented through a **LinkedIn video series**, where each featu
 # 📷 Part 8 — QR Payments  
 [Watch Video](ADD_LINK)
 
+# Upcoming Part's is coming soon.
 
 
-# 🎬 Video Thumbnails
+## 🎬 Video Thumbnails
 
-> Replace these with your actual screenshots from LinkedIn videos
+# 🔐 Part 1 — Secure Login
+[![Secure Login]()](YOUR_VIDEO_LINK_1)
 
-| Feature | Preview |
-|--------|--------|
-| Login | ![Login](screenshots/login.png) |
-| Dashboard | ![Dashboard](screenshots/dashboard.png) |
-| Accounts | ![Accounts](screenshots/accounts.png) |
-| Cards | ![Cards](screenshots/cards.png) |
-| Payments | ![Payments](screenshots/payments.png) |
-| QR | ![QR](screenshots/qr.png) |
+# 📊 Part 2 — Dashboard & Transactions
+[![Dashboard](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part2.png)](YOUR_VIDEO_LINK_2)
+
+# 🏦 Part 3 — Accounts
+[![Accounts](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part3.png)](YOUR_VIDEO_LINK_3)
+
+# 💳 Part 4 — Card Controls
+[![Card Controls](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part4.png)](YOUR_VIDEO_LINK_4)
+
+
+# 💸 Part 5 — Bill Payments
+[![Bill Payments](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part5.png)](YOUR_VIDEO_LINK_5)
+
+# 📦 Part 6 — Bulk Payments
+[![Bulk Payments](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part6.png)](YOUR_VIDEO_LINK_6)
+
+### 🤝 Part 7 — P2P Transfer
+[![P2P Transfer](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part7.png)](YOUR_VIDEO_LINK_7)
+
+# 📱 Part 8 — QR Payments
+[![QR Payments](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part8.png)](YOUR_VIDEO_LINK_8)
 
 
 
