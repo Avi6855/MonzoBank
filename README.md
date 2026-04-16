@@ -21,58 +21,58 @@ Instead of building a static UI demo, the focus is on:
 This project is documented through a **LinkedIn video series**, where each feature is implemented and demonstrated in real-time.
 
 # 🔐 Part 1 — Secure Login  
-[Watch Video](ADD_LINK)
+[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7441542299500847104/?originTrackingId=gtuPAKLjQqKIqumK3DTlow%3D%3D)
 
 # 📊 Part 2 — Dashboard & Transactions  
-[Watch Video](ADD_LINK)
+[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7443314840829501440/?originTrackingId=J5ZfMi97Q6uE5kbn9SMANg%3D%3D)
 
 # 🏦 Part 3 — Accounts  
-[Watch Video](ADD_LINK)
+[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7444387956733149185/?originTrackingId=2lhvKzetTPik22xpi5DNeA%3D%3D)
 
 # 💳 Part 4 — Card Controls  
-[Watch Video](ADD_LINK)
+[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7448778143902986240/?originTrackingId=SBKF5YB6TbWD8nXwlyFpsw%3D%3D)
 
 # 💸 Part 5 — Bill Payments  
-[Watch Video](ADD_LINK)
+[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7449335579231834112/?originTrackingId=MGC6rDlgQZqZWnED9JK31A%3D%3D)
 
 # 📦 Part 6 — Bulk Payments  
-[Watch Video](ADD_LINK)
+[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7449691663737876480/?originTrackingId=ZrRL4qCESK2BAV1fbPp5Ag%3D%3D)
 
 # 🤝 Part 7 — P2P Transfer  
-[Watch Video](ADD_LINK)
+[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7450064159980834816/?originTrackingId=89J%2BMmv%2FQVWgzBkQIhuKAA%3D%3D)
 
 # 📷 Part 8 — QR Payments  
-[Watch Video](ADD_LINK)
+[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7450422838294986752/?originTrackingId=YJN9Gt5OS9q8fXKhzSFGhg%3D%3D)
 
 # Upcoming Part's is coming soon.
+
 
 
 ## 🎬 Video Thumbnails
 
 # 🔐 Part 1 — Secure Login
-[![Secure Login]()](YOUR_VIDEO_LINK_1)
+[![Secure Login](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_1.png)]
 
 # 📊 Part 2 — Dashboard & Transactions
-[![Dashboard](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part2.png)](YOUR_VIDEO_LINK_2)
+[![Dashboard](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_2.png)]
 
 # 🏦 Part 3 — Accounts
-[![Accounts](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part3.png)](YOUR_VIDEO_LINK_3)
+[![Accounts](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_3.png)]
 
 # 💳 Part 4 — Card Controls
-[![Card Controls](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part4.png)](YOUR_VIDEO_LINK_4)
-
+[![Card Controls](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_4.png)]
 
 # 💸 Part 5 — Bill Payments
-[![Bill Payments](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part5.png)](YOUR_VIDEO_LINK_5)
+[![Bill Payments](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_5.png)]
 
 # 📦 Part 6 — Bulk Payments
-[![Bulk Payments](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part6.png)](YOUR_VIDEO_LINK_6)
+[![Bulk Payments](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_6.png)]
 
 ### 🤝 Part 7 — P2P Transfer
-[![P2P Transfer](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part7.png)](YOUR_VIDEO_LINK_7)
+[![P2P Transfer](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_7.png)]
 
 # 📱 Part 8 — QR Payments
-[![QR Payments](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/thumbnails/part8.png)](YOUR_VIDEO_LINK_8)
+[![QR Payments](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_8.png)]
 
 
 
@@ -221,7 +221,7 @@ UI Recomposition (Compose)
 
 # 1. Clone
 
-git clone [https://github.com/your-username/monzo-android-compose-banking-app.git](https://github.com/your-username/monzo-android-compose-banking-app.git)
+git clone ()
 
 
 # 2. Open in Android Studio
