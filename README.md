@@ -221,7 +221,7 @@ UI Recomposition (Compose)
 
 # 1. Clone
 
-git clone ()
+git clone (https://github.com/Avi6855/MonzoBank.git)
 
 
 # 2. Open in Android Studio
