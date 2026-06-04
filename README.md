@@ -3,6 +3,8 @@
 A production-inspired fintech banking application built using **Jetpack Compose**, focused on **real-world product engineering, scalability, and user trust.**
 
 
+![Platform Banner](https://github.com/Avi6855/MonzoBank/blob/master/Monzo_Bank_App_Banner.png)
+
 # 🚀 Overview
 
 This project is a **Monzo-inspired Android banking app** developed as a self-initiated project.
