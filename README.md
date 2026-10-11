@@ -4,7 +4,7 @@
 ![Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?logo=android&logoColor=white)
 ![Hilt](https://img.shields.io/badge/Dagger_Hilt-009688?logo=dagger&logoColor=white)
 ![Retrofit](https://img.shields.io/badge/Retrofit_API-3DDC84?logo=android&logoColor=white)
-![Tests](https://img.shields.io/badge/Unit_Tests-28_passing-brightgreen?logo=junit5&logoColor=white)
+![Tests](https://img.shields.io/badge/Unit_Tests-97_passing-brightgreen?logo=junit5&logoColor=white)
 
 A **Monzo-inspired fintech banking app**: secure auth, accounts, cards, payments (P2P / Bill / Bulk / QR) — built with **MVVM + Clean Architecture**, documented build-in-public on LinkedIn.
 
@@ -20,10 +20,10 @@ A **Monzo-inspired fintech banking app**: secure auth, accounts, cards, payments
 | Coroutines & Flow, MVVM | 8 ViewModels with `StateFlow` + `viewModelScope` |
 | Dagger Hilt + Retrofit + Room | `di/NetworkModule.kt`, `di/DatabaseModule.kt`, 10 Retrofit APIs, Room cache |
 | Fintech domain | Auth, cards (freeze/block/PIN), P2P / bill / bulk / QR payments |
-| Testing mindset (TDD) | 28 JUnit4 tests in `app/src/test/` |
+| Testing mindset (TDD) | 97 JVM unit tests across 7 suites in `app/src/test/` (validation, security, error mapping, Room converters, loading state) |
 | Ships & communicates | 8-part LinkedIn demo series + screenshots below |
 
-Scale: **~500 Kotlin files · 60+ screens · 10 API services · 70+ repositories · 28 tests.**
+Scale: **~500 Kotlin files · 60+ screens · 10 API services · 70+ repositories · 97 unit tests.**
 
 ## 📱 Screenshots
 
@@ -58,7 +58,7 @@ Scale: **~500 Kotlin files · 60+ screens · 10 API services · 70+ repositories
 |---|---|
 | Kotlin, Android SDK, Compose | ✅ 100% Kotlin, Compose + Material 3, Navigation, CameraX |
 | Coroutines, Dagger, Retrofit, MVVM | ✅ `suspend` APIs, Hilt modules, Retrofit+OkHttp+Moshi, ViewModel+Repository |
-| TDD | ✅ 28 JUnit4 tests (`InputValidationTest` 15 + `SecurityUtilsTest` 13) — `./gradlew :app:testDebugUnitTest` |
+| TDD | ✅ 97 JUnit4 tests over form validation, security helpers, error mapping, Room converters and loading state — `./gradlew :app:testDebugUnitTest` |
 | RxJava | 🛠️ Roadmap (legacy-stream interop) |
 
 + Room offline cache, LazyColumn + hoisted `UiState` for smooth recomposition.
@@ -87,15 +87,39 @@ Start here:
 [Part 7 — P2P](https://www.linkedin.com/feed/update/urn:li:activity:7450064159980834816/?originTrackingId=89J%2BMmv%2FQVWgzBkQIhuKAA%3D%3D) ·
 [Part 8 — QR](https://www.linkedin.com/feed/update/urn:li:activity:7450422838294986752/?originTrackingId=YJN9Gt5OS9q8fXKhzSFGhg%3D%3D)
 
+## 🧪 Tests
+
+97 JVM unit tests cover everything that is pure logic, so they run in seconds without an emulator:
+
+| Suite | What it pins down |
+|---|---|
+| `InputValidationTest` (21) | Amount, transfer-limit, password, PIN, name and form-state validators |
+| `SecurityUtilsTest` (14) | PIN/amount/transfer checks, fraud heuristic, references, sanitisation, rate limiting |
+| `FormFieldValidationTest` (20) | Account number, sort code, card (Luhn), reference, address, postcode and date-of-birth rules |
+| `ErrorHandlingTest` (19) | `Throwable.toAppError()` mapping, `Result` states, `safeApiCall` / `safeDatabaseCall`, transaction pre-checks, per-user rate limiting |
+| `SecurityHelpersTest` (11) | Bank-detail format checks, PIN generation, card/account/email masking, session timeout |
+| `ConvertersTest` (7) | Room type converters (dates, `BigDecimal`, enums, JSON maps/lists) |
+| `LoadingMessagesTest` (5) | Loading copy, icons and `LoadingState` defaults |
+
+```bash
+./gradlew :app:testDebugUnitTest
+```
+
+Parts that need the Android runtime (`android.util.Patterns`, `android.util.Base64`, Compose UI) are
+left to instrumented tests.
+
 ## 📦 Run
 
 ```bash
 git clone https://github.com/Avi6855/MonzoBank.git
 ```
 
+Requires JDK 17 (the Gradle wrapper is 8.13) and an Android SDK with **compileSdk 35**.
+
 1. Open in Android Studio, let Gradle sync
 2. Set `BASE_URL` in `di/NetworkModule.kt`
-3. Run ▶️ on device/emulator
+3. Run the unit tests: `./gradlew :app:testDebugUnitTest`
+4. Run ▶️ on device/emulator
 
 Roadmap: ViewModel tests (Turbine + MockK) · RxJava sample · transfers/notifications/offline+.
 

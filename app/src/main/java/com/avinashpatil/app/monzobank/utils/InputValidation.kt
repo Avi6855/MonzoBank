@@ -148,21 +148,20 @@ fun validatePhoneNumber(phone: String): String? {
  * Amount validation
  */
 fun validateAmount(amount: String): String? {
+    if (amount.isBlank()) return "Amount is required"
+
+    val decimal = try {
+        BigDecimal(amount)
+    } catch (e: Exception) {
+        return "Please enter a valid amount"
+    }
+
     return when {
-        amount.isBlank() -> "Amount is required"
+        // Checked first, otherwise isValidAmount() already rejects zero and negatives
+        decimal <= BigDecimal.ZERO -> "Amount must be greater than zero"
         !amount.isValidAmount() -> "Please enter a valid amount"
-        else -> {
-            try {
-                val decimal = BigDecimal(amount)
-                when {
-                    decimal <= BigDecimal.ZERO -> "Amount must be greater than zero"
-                    decimal > BigDecimal("10000") -> "Amount cannot exceed £10,000"
-                    else -> null
-                }
-            } catch (e: Exception) {
-                "Please enter a valid amount"
-            }
-        }
+        decimal > BigDecimal("10000") -> "Amount cannot exceed £10,000"
+        else -> null
     }
 }
 
