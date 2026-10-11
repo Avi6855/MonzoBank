@@ -1,281 +1,110 @@
-# 💳 Monzo Inspired Banking App (Android - Jetpack Compose)
+# 💳 MonzoBank — Fintech Banking App (Kotlin + Jetpack Compose)
+
+![Kotlin](https://img.shields.io/badge/Kotlin-100%25-7F52FF?logo=kotlin&logoColor=white)
+![Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?logo=android&logoColor=white)
+![Hilt](https://img.shields.io/badge/Dagger_Hilt-009688?logo=dagger&logoColor=white)
+![Retrofit](https://img.shields.io/badge/Retrofit_API-3DDC84?logo=android&logoColor=white)
+![Tests](https://img.shields.io/badge/Unit_Tests-28_passing-brightgreen?logo=junit5&logoColor=white)
 
-A production-inspired fintech banking application built using **Jetpack Compose**, focused on **real-world product engineering, scalability, and user trust.**
+A **Monzo-inspired fintech banking app**: secure auth, accounts, cards, payments (P2P / Bill / Bulk / QR) — built with **MVVM + Clean Architecture**, documented build-in-public on LinkedIn.
 
+> Portfolio project for **Graduate Android Engineer (Fintech)** roles — e.g. Revolut Graduate Programme 2027: Software Engineer (Android).
 
-![Platform Banner](https://github.com/Avi6855/MonzoBank/blob/master/Monzo_Bank_App_Banner.png)
+![Platform Banner](Monzo_Bank_App_Banner.png)
 
-# 🚀 Overview
+## 👀 Recruiter quick scan (30 seconds)
 
-This project is a **Monzo-inspired Android banking app** developed as a self-initiated project.
+| What you want | Proof in this repo |
+|---|---|
+| Kotlin + Jetpack Compose, Material 3 | 60+ Compose screens in `presentation/ui/` |
+| Coroutines & Flow, MVVM | 8 ViewModels with `StateFlow` + `viewModelScope` |
+| Dagger Hilt + Retrofit + Room | `di/NetworkModule.kt`, `di/DatabaseModule.kt`, 10 Retrofit APIs, Room cache |
+| Fintech domain | Auth, cards (freeze/block/PIN), P2P / bill / bulk / QR payments |
+| Testing mindset (TDD) | 28 JUnit4 tests in `app/src/test/` |
+| Ships & communicates | 8-part LinkedIn demo series + screenshots below |
 
-Instead of building a static UI demo, the focus is on:
+Scale: **~500 Kotlin files · 60+ screens · 10 API services · 70+ repositories · 28 tests.**
 
-- Real-time data handling  
-- Secure payment systems  
-- Scalable architecture  
-- Product-driven UX decisions  
+## 📱 Screenshots
 
+<table>
+  <tr>
+    <td align="center"><img src="Part_1.png" width="200"/><br/>Secure Login</td>
+    <td align="center"><img src="Part_2.png" width="200"/><br/>Dashboard</td>
+    <td align="center"><img src="Part_3.png" width="200"/><br/>Accounts</td>
+    <td align="center"><img src="Part_4.png" width="200"/><br/>Card Controls</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="Part_5.png" width="200"/><br/>Bill Payments</td>
+    <td align="center"><img src="Part_6.png" width="200"/><br/>Bulk Payments</td>
+    <td align="center"><img src="Part_7.png" width="200"/><br/>P2P Transfer</td>
+    <td align="center"><img src="Part_8.png" width="200"/><br/>QR Payments</td>
+  </tr>
+</table>
 
+## ✨ Features
 
-# 🎥 Demo (Build in Public Series)
+- **🔐 Auth:** login/register, validation, JWT via `TokenManager`, auth/error network interceptors
+- **📊 Dashboard:** balance, transactions, API + Room sync
+- **🏦 Accounts:** multi-account, create, offline cache
+- **💳 Cards:** list, freeze/block, PIN, limits
+- **💸 Payments:** bills, P2P, requests — validated success/error states
+- **📦 Bulk:** batch payments, per-item status
+- **📷 QR:** CameraX scan → instant pay
 
-This project is documented through a **LinkedIn video series**, where each feature is implemented and demonstrated in real-time.
+## ⚙️ Stack fit (Revolut Android → this project)
 
-# 🔐 Part 1 — Secure Login  
-[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7441542299500847104/?originTrackingId=gtuPAKLjQqKIqumK3DTlow%3D%3D)
+| Revolut asks | Here |
+|---|---|
+| Kotlin, Android SDK, Compose | ✅ 100% Kotlin, Compose + Material 3, Navigation, CameraX |
+| Coroutines, Dagger, Retrofit, MVVM | ✅ `suspend` APIs, Hilt modules, Retrofit+OkHttp+Moshi, ViewModel+Repository |
+| TDD | ✅ 28 JUnit4 tests (`InputValidationTest` 15 + `SecurityUtilsTest` 13) — `./gradlew :app:testDebugUnitTest` |
+| RxJava | 🛠️ Roadmap (legacy-stream interop) |
 
-# 📊 Part 2 — Dashboard & Transactions  
-[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7443314840829501440/?originTrackingId=J5ZfMi97Q6uE5kbn9SMANg%3D%3D)
++ Room offline cache, LazyColumn + hoisted `UiState` for smooth recomposition.
 
-# 🏦 Part 3 — Accounts  
-[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7444387956733149185/?originTrackingId=2lhvKzetTPik22xpi5DNeA%3D%3D)
+## 🏗️ Review in 5 minutes
 
-# 💳 Part 4 — Card Controls  
-[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7448778143902986240/?originTrackingId=SBKF5YB6TbWD8nXwlyFpsw%3D%3D)
+```
+Compose UI → ViewModel (StateFlow) → UseCase → Repository → Retrofit / Room
+```
 
-# 💸 Part 5 — Bill Payments  
-[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7449335579231834112/?originTrackingId=MGC6rDlgQZqZWnED9JK31A%3D%3D)
+Start here:
+1. `di/NetworkModule.kt` — Retrofit + OkHttp + Moshi wiring
+2. `data/remote/api/AuthApiService.kt` — `suspend` API style
+3. `presentation/viewmodel/AuthViewModel.kt` — StateFlow + validation
+4. `utils/InputValidation.kt` + `app/src/test/` — tested fintech validators
+5. `data/local/MonzoBankDatabase.kt` — Room cache
 
-# 📦 Part 6 — Bulk Payments  
-[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7449691663737876480/?originTrackingId=ZrRL4qCESK2BAV1fbPp5Ag%3D%3D)
+## 🎥 Build in public (LinkedIn)
 
-# 🤝 Part 7 — P2P Transfer  
-[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7450064159980834816/?originTrackingId=89J%2BMmv%2FQVWgzBkQIhuKAA%3D%3D)
+[Part 1 — Login](https://www.linkedin.com/feed/update/urn:li:activity:7441542299500847104/?originTrackingId=gtuPAKLjQqKIqumK3DTlow%3D%3D) ·
+[Part 2 — Dashboard](https://www.linkedin.com/feed/update/urn:li:activity:7443314840829501440/?originTrackingId=J5ZfMi97Q6uE5kbn9SMANg%3D%3D) ·
+[Part 3 — Accounts](https://www.linkedin.com/feed/update/urn:li:activity:7444387956733149185/?originTrackingId=2lhvKzetTPik22xpi5DNeA%3D%3D) ·
+[Part 4 — Cards](https://www.linkedin.com/feed/update/urn:li:activity:7448778143902986240/?originTrackingId=SBKF5YB6TbWD8nXwlyFpsw%3D%3D) ·
+[Part 5 — Bills](https://www.linkedin.com/feed/update/urn:li:activity:7449335579231834112/?originTrackingId=MGC6rDlgQZqZWnED9JK31A%3D%3D) ·
+[Part 6 — Bulk](https://www.linkedin.com/feed/update/urn:li:activity:7449691663737876480/?originTrackingId=ZrRL4qCESK2BAV1fbPp5Ag%3D%3D) ·
+[Part 7 — P2P](https://www.linkedin.com/feed/update/urn:li:activity:7450064159980834816/?originTrackingId=89J%2BMmv%2FQVWgzBkQIhuKAA%3D%3D) ·
+[Part 8 — QR](https://www.linkedin.com/feed/update/urn:li:activity:7450422838294986752/?originTrackingId=YJN9Gt5OS9q8fXKhzSFGhg%3D%3D)
 
-# 📷 Part 8 — QR Payments  
-[Watch Video](https://www.linkedin.com/feed/update/urn:li:activity:7450422838294986752/?originTrackingId=YJN9Gt5OS9q8fXKhzSFGhg%3D%3D)
+## 📦 Run
 
-# Upcoming Part's is coming soon.
+```bash
+git clone https://github.com/Avi6855/MonzoBank.git
+```
 
+1. Open in Android Studio, let Gradle sync
+2. Set `BASE_URL` in `di/NetworkModule.kt`
+3. Run ▶️ on device/emulator
 
+Roadmap: ViewModel tests (Turbine + MockK) · RxJava sample · transfers/notifications/offline+.
 
-## 🎬 Video Thumbnails
+## 👨‍💻 Author
 
-# 🔐 Part 1 — Secure Login
-[![Secure Login](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_1.png)]
+**Avinash Patil** — Android Engineer | Kotlin | Jetpack Compose · CodeChef 5⭐ (Global Rank 509)
 
-# 📊 Part 2 — Dashboard & Transactions
-[![Dashboard](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_2.png)]
+🔗 [LinkedIn](https://www.linkedin.com/in/avinash-patil-278011228/) · 💻 [GitHub](https://github.com/Avi6855?tab=repositories) · 📧 avinashpatil6855@gmail.com
 
-# 🏦 Part 3 — Accounts
-[![Accounts](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_3.png)]
+Open for Graduate Android (Fintech) roles 🚀 — willing to relocate: Poland / Portugal / Spain / UAE / UK (hybrid, 3 days in office).
 
-# 💳 Part 4 — Card Controls
-[![Card Controls](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_4.png)]
-
-# 💸 Part 5 — Bill Payments
-[![Bill Payments](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_5.png)]
-
-# 📦 Part 6 — Bulk Payments
-[![Bulk Payments](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_6.png)]
-
-### 🤝 Part 7 — P2P Transfer
-[![P2P Transfer](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_7.png)]
-
-# 📱 Part 8 — QR Payments
-[![QR Payments](https://github.com/Avi6855/MonzoBank/blob/955500504b8a582def44a2aa12bbff85c04ef8f2/Part_8.png)]
-
-
-
-# 🏗️ Architecture Diagram
-
-            ┌────────────────────┐
-            │   Jetpack Compose  │
-            │   UI Layer         │
-            └─────────┬──────────┘
-                      ↓
-            ┌────────────────────┐
-            │   ViewModel Layer  │
-            │   State Management │
-            └─────────┬──────────┘
-                      ↓
-            ┌────────────────────┐
-            │   UseCases Layer   │
-            │   Business Logic   │
-            └─────────┬──────────┘
-                      ↓
-            ┌────────────────────┐
-            │   Repository Layer │
-            │   Data Handling    │
-            └─────────┬──────────┘
-                      ↓
-            ┌────────────────────┐
-            │   API / Backend    │
-            │   Server Layer     │
-            └────────────────────┘
-
-
-# 🔄 API Flow Diagram
-
-
-User Action (UI)
-↓
-ViewModel Trigger
-↓
-UseCase Execution
-↓
-Repository Call
-↓
-API Request → Backend Server
-↓
-Response (Success / Error)
-↓
-Repository Mapping
-↓
-ViewModel State Update
-↓
-UI Recomposition (Compose)
-
-
-
-# ✨ Features
-
-# 🔐 Authentication
-- Email validation  
-- Secure password input  
-- Error handling  
-- Backend authentication  
-
-
-# 📊 Dashboard
-- Real-time balance  
-- Transaction history  
-- Backend sync
-
-
-# 🏦 Accounts
-- Multiple account types  
-- Create account  
-- Real-time updates  
-
-
-# 💳 Card Controls
-- View cards  
-- Card details  
-- Order new card  
-
-
-# 💸 Payments
-- Bill payments  
-- Validation  
-- Success / failure states  
-
-
-# 📦 Bulk Payments
-- Batch processing  
-- Independent transaction states  
-- Granular feedback  
-
-
-# 🤝 P2P Transfer
-- Send & request money  
-- Identity validation  
-- Real-time updates  
-
-
-# 📷 QR Payments
-- CameraX integration  
-- QR parsing  
-- Instant payments  
-
-
-# ⚙️ Tech Stack
-
-- Kotlin  
-- Jetpack Compose  
-- MVVM Architecture  
-- Coroutines & Flow  
-- REST APIs  
-- Material 3  
-- CameraX  
-
-
-# 🔐 Security
-
-- Input validation  
-- Secure flows  
-- Controlled state transitions  
-- Backend verification  
-
-
-# ⚡ Performance
-
-- LazyColumn optimization  
-- Efficient recomposition  
-- Smooth UI updates  
-
-
-# 🧠 Product Thinking
-
-> “How can financial interactions feel simple, fast and trustworthy?”
-
-# Focus:
-
-- Clarity  
-- Speed  
-- Reliability  
-- Minimal friction  
-
-
-
-# 📦 Setup Guide
-
-# 1. Clone
-
-git clone (https://github.com/Avi6855/MonzoBank.git)
-
-
-# 2. Open in Android Studio
-
-- Sync Gradle  
-- Install SDK  
-
-# 3. Configure API
-
-BASE_URL = "YOUR_API_URL"
-
-
-# 4. Run App
-
-- Select device  
-- Click Run ▶️  
-
-# 📂 Project Structure
-
-app/
-├── data/
-├── domain/
-├── ui/
-├── viewmodel/
-├── network/
-└── utils/
-
-
-# 📌 Future Work
-
-- International Transfers 🌍  
-- Notifications 🔔  
-- Offline mode  
-- Compose Multiplatform  
-
-
-# 👨‍💻 About Me
-
-**Avinash Patil**  
-Android Engineer | Kotlin | Jetpack Compose  
-
-🔗 LinkedIn: https://www.linkedin.com/in/avinash-patil-278011228/  
-💻 GitHub: https://github.com/Avi6855?tab=repositories
- #  Email: avinashpatil6855@gmail.com
-
-# 📩 Contact
-
-Open for Android & Fintech opportunities 🚀
-
-
-# ⭐ Support
-
-⭐ Star the repo  
-🍴 Fork  
-💬 Feedback  
+⭐ Star · 🍴 Fork · 💬 Feedback welcome
