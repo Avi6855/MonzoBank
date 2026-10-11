@@ -12,7 +12,7 @@ A **Monzo-inspired fintech banking app**: secure auth, accounts, cards, payments
 
 ![Platform Banner](Monzo_Bank_App_Banner.png)
 
-## 👀 Recruiter quick scan (30 seconds)
+## 👀 Quick scan (30 seconds)
 
 | What you want | Proof in this repo |
 |---|---|
