@@ -13,9 +13,11 @@ import com.avinashpatil.app.monzobank.data.local.entity.*
         UserEntity::class,
         AccountEntity::class,
         TransactionEntity::class,
-        CardEntity::class
+        CardEntity::class,
+        AuthTokenEntity::class,
+        BiometricAuthEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

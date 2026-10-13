@@ -5,6 +5,7 @@ import com.avinashpatil.app.monzobank.data.local.entity.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.math.BigDecimal
+import java.time.LocalDateTime
 import java.util.Date
 
 class Converters {
@@ -22,6 +23,17 @@ class Converters {
         return date?.time
     }
     
+    // LocalDateTime converters (auth token expiry, biometric last-used)
+    @TypeConverter
+    fun fromLocalDateTime(value: LocalDateTime?): String? {
+        return value?.toString()
+    }
+
+    @TypeConverter
+    fun toLocalDateTime(value: String?): LocalDateTime? {
+        return value?.let { LocalDateTime.parse(it) }
+    }
+
     // BigDecimal converters
     @TypeConverter
     fun fromBigDecimal(value: BigDecimal?): String? {

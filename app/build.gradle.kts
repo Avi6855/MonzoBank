@@ -1,9 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    // Temporarily disable KAPT and Hilt
-    // alias(libs.plugins.kotlin.kapt)
-    // alias(libs.plugins.hilt.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.parcelize)
 }
 
@@ -71,14 +70,13 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
     
-    // Temporarily disable Hilt Dependencies
-    // implementation(libs.hilt.android)
-    // kapt(libs.hilt.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
     
-    // Database - without KAPT for now
+    // Database
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    // kapt(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
     
     // Network
     implementation(libs.retrofit)

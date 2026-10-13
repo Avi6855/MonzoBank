@@ -4,7 +4,7 @@
 ![Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?logo=android&logoColor=white)
 ![Hilt](https://img.shields.io/badge/Dagger_Hilt-009688?logo=dagger&logoColor=white)
 ![Retrofit](https://img.shields.io/badge/Retrofit_API-3DDC84?logo=android&logoColor=white)
-![Tests](https://img.shields.io/badge/Unit_Tests-97_passing-brightgreen?logo=junit5&logoColor=white)
+![Android CI](https://github.com/Avi6855/MonzoBank/actions/workflows/android-ci.yml/badge.svg)
 
 A **Monzo-inspired fintech banking app**: secure auth, accounts, cards, payments (P2P / Bill / Bulk / QR) — built with **MVVM + Clean Architecture**, documented build-in-public on LinkedIn.
 
@@ -18,7 +18,7 @@ A **Monzo-inspired fintech banking app**: secure auth, accounts, cards, payments
 |---|---|
 | Kotlin + Jetpack Compose, Material 3 | 60+ Compose screens in `presentation/ui/` |
 | Coroutines & Flow, MVVM | 8 ViewModels with `StateFlow` + `viewModelScope` |
-| Dagger Hilt + Retrofit + Room | `di/NetworkModule.kt`, `di/DatabaseModule.kt`, `di/RepositoryModule.kt`, 10 Retrofit APIs, Room cache (KAPT/Hilt is commented out in the module build for now — see the note in **Run**) |
+| Dagger Hilt + Retrofit + Room | `di/NetworkModule.kt`, `di/DatabaseModule.kt`, `di/RepositoryModule.kt`, 10 Retrofit APIs, Room cache — KAPT, Hilt and the Room compiler all run in this build |
 | Fintech domain | Auth, cards (freeze/block/PIN), P2P / bill / bulk / QR payments |
 | Testing mindset (TDD) | 97 JVM unit tests across 7 suites in `app/src/test/` (validation, security, error mapping, Room converters, loading state) |
 | Ships & communicates | 8-part LinkedIn demo series + screenshots below |
@@ -120,10 +120,6 @@ Requires JDK 17 (the Gradle wrapper is 8.13) and an Android SDK with **compileSd
 2. Set `BASE_URL` in `di/NetworkModule.kt`
 3. Run the unit tests: `./gradlew :app:testDebugUnitTest`
 4. Run ▶️ on device/emulator
-
-Note: `app/build.gradle.kts` currently has the Hilt plugin, KAPT and the Room compiler commented out
-("temporarily disable"), so those annotations are not processed in this build — the app compiles and runs,
-but that code generation path still has to be re-enabled.
 
 Roadmap: ViewModel tests (Turbine + MockK) · RxJava sample · transfers/notifications/offline+.
 
